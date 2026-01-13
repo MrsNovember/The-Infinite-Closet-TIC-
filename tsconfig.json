@@ -1,0 +1,16 @@
+{
+  "extends": "./apps/api-gateway/tsconfig.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@api/*": ["apps/api-gateway/src/*"],
+      "@web/*": ["apps/web-mirror/src/*"],
+      "@shared/*": ["packages/shared/src/*"]
+    }
+  },
+  "include": [
+    "apps/**/*.ts",
+    "packages/**/*.ts",
+    "microservices/**/*.py"
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "name": "the-infinite-closet-root",
+  "version": "0.1.0",
+  "description": "The Infinite Closet - AI + AR + SocialFi Fashion Metaverse",
+  "author": "Cicibyte Corp",
+  "license": "MIT",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*",
+    "microservices/*"
+  ],
+  "scripts": {
+    "install:all": "npm install && npm run install:apps",
+    "install:apps": "npm --prefix apps/api-gateway install && npm --prefix apps/web-mirror install 2>/dev/null || true",
+    "start": "docker-compose up -d",
+    "stop": "docker-compose down",
+    "dev": "docker-compose up -d && npm --prefix apps/api-gateway run start:dev",
+    "api:dev": "npm --prefix apps/api-gateway run start:dev",
+    "web:dev": "npm --prefix apps/web-mirror run dev 2>/dev/null || echo 'Web app not configured'",
+    "api:build": "npm --prefix apps/api-gateway run build",
+    "api:start": "npm --prefix apps/api-gateway run start:prod",
+    "build": "npm run api:build",
+    "lint": "npm --prefix apps/api-gateway run lint",
+    "test": "npm --prefix apps/api-gateway run test",
+    "test:e2e": "npm --prefix apps/api-gateway run test:e2e"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "dotenv": "^16.3.1",
+    "cors": "^2.8.5"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.2",
+    "typescript": "^5.3.3",
+    "@types/node": "^20.10.6"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
+  }
+}
